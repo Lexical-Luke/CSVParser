@@ -149,10 +149,10 @@ namespace CSVParser
             {
                 toWrite = getFinCSV(fin[i]);//put the data into a string to be further formatted
                 //reader.WriteLine(getFinCSV(fin[i]));
-                if (i<fin.Count())//as long as it is not at the end of the string it adds a comma dellimeter
+                /*if (i<fin.Count())//as long as it is not at the end of the string it adds a comma dellimeter
                 {
-                    toWrite += ", ";
-                }
+                    toWrite;
+                }*/
                 //toWrite = toWrite.Substring(0, (toWrite.Length - 1));//cuts the end off of the string to get rid of the ", " that gets added cuz i cant get rid of it.
                 reader.WriteLine(toWrite);//write to the file
             }
