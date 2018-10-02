@@ -13,3 +13,10 @@ C:\Users\LiamSearle\Documents\CS\Databases\Prac_1\CSVParser\CSVParser\obj\Debug\
 C:\Users\LiamSearle\Documents\CS\Databases\Prac_1\CSVParser\CSVParser\obj\Debug\CSVParser.csproj.CoreCompileInputs.cache
 C:\Users\LiamSearle\Documents\CS\Databases\Prac_1\CSVParser\CSVParser\obj\Debug\CSVParser.exe
 C:\Users\LiamSearle\Documents\CS\Databases\Prac_1\CSVParser\CSVParser\obj\Debug\CSVParser.pdb
+C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\bin\Debug\CSVParser.exe.config
+C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\bin\Debug\CSVParser.exe
+C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\bin\Debug\CSVParser.pdb
+C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\obj\Debug\CSVParser.csprojAssemblyReference.cache
+C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\obj\Debug\CSVParser.csproj.CoreCompileInputs.cache
+C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\obj\Debug\CSVParser.exe
+C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\obj\Debug\CSVParser.pdb

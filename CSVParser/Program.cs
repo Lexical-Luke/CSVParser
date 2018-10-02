@@ -135,7 +135,7 @@ namespace CSVParser
         #region The getFinCSV(financial) method returns the line of financial data
         static string getFinCSV(financial a)
         {
-            return a.field1 + ',' + a.field2 + ',' + a.field3 + ',' + a.field4 + ',' + a.field5 + ',' + a.field6 + ',' + a.field7 + ',' + a.field8 + ',' + a.field9;
+            return a.field1 + ',' + a.field2 + ',' + a.field3 + ',' + a.field4 + ',' + a.field5 + ',' + a.field6 + ',' + a.field7 + ',' + a.field8 + ',' + a.field9 + ',' + a.field10;
         }
         #endregion
 
