@@ -299,7 +299,7 @@ namespace CSVParser
             List<financial> finData = new List<financial>();
             for (int run = 0; run < 5; run++)
             {
-
+                csvData = new List<string[]>();
                 string fullPath = fileBasePath + args[run];
 
                 // initialise the data structures required for the solution
