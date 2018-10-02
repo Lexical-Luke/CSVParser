@@ -141,8 +141,8 @@ namespace CSVParser
         #region The writeData(List<string[]>, List<struct>) method accepts header data and the financial data and writes them to a sanitised file
         static void writeData(string path, string[] header, List<financial> fin)
         {
-            StreamWriter reader = new StreamWriter(path);
-            reader.WriteLine(getHeaderCSV(header));
+            StreamWriter writer = new StreamWriter(path);
+            writer.WriteLine(getHeaderCSV(header));
             string toWrite = "";//string that will be written to the csv file
             for (int i = 0; i < fin.Count(); i++)
             {
@@ -154,10 +154,10 @@ namespace CSVParser
                     toWrite;
                 }*/
                 //toWrite = toWrite.Substring(0, (toWrite.Length - 1));//cuts the end off of the string to get rid of the ", " that gets added cuz i cant get rid of it.
-                reader.WriteLine(toWrite);//write to the file
+                writer.WriteLine(toWrite);//write to the file
                 
             }
-            reader.Close();
+            writer.Close();
         }
 
         #endregion
@@ -294,101 +294,98 @@ namespace CSVParser
             // compile the path to the sample file
             // this program gets the file name from the command line arguments 
             // Click Project > CVSParser Properties > Debug > Start Options > Command Line Arguments
-            string fullPath = fileBasePath + args[0];
-
-            // initialise the data structures required for the solution
             List<string[]> csvData = new List<string[]>();
             string[] header = new string[11];
-            StreamReader reader = new StreamReader(fullPath);
-            string line = null;
-            line = reader.ReadLine();
-            header = line.Split(',');
-            reader.Close();
-
-            // call the main parse method
-            parseData(fullPath, header, csvData);
-
             List<financial> finData = new List<financial>();
-
-            for (int i = 0; i < csvData.Count; i++)
+            for (int run = 0; run < 5; run++)
             {
-                financial a = new financial();
+
+                string fullPath = fileBasePath + args[run];
+
+                // initialise the data structures required for the solution
+                
+                StreamReader reader = new StreamReader(fullPath);
+                string line = null;
+                line = reader.ReadLine();
+                header = line.Split(',');
+                reader.Close();
+
+                // call the main parse method
+                parseData(fullPath, header, csvData);
+
+               
+
+                for (int i = 0; i < csvData.Count; i++)
+                {
+                    financial a = new financial();
+
+                   
+
+                    //Make sure the headers aren't read into the fields moving from 1 csv file to the next
+                    if (formatData(csvData[i][0]) == "ALPHA_CODE")
+                    {
+                        i++;
+                    }
+
+                    //csvData[col][row]
+                    //temp is used to check values in error testing
+                    //string temp = "";
+                    //temp = formatData(csvData[i][*]);
+                    a.field1 = csvData[i][0];
+                    a.field2 = csvData[i][1];
+                    a.field3 = Convert.ToUInt16(formatData(csvData[i][2]));
+                    a.field4 = Convert.ToUInt16(formatData(csvData[i][3]));
+                    a.field5 = Convert.ToUInt16(formatData(csvData[i][4]));
+                    a.field6 = Convert.ToUInt32(formatData(csvData[i][5]));
+                    a.field7 = Convert.ToUInt64(formatData(csvData[i][6]));
+                    a.field8 = Convert.ToDouble(formatData(csvData[i][7]));
+                    a.field9 = Convert.ToDouble(formatData(csvData[i][8]));
+                    a.field10 = Convert.ToChar(formatData(csvData[i][9]));
+
+                    // There are not 53 weeks in a year, if so add 1 to year and set the week to 1 (the first week of a new year)
+                    if (a.field4 == 53 || a.field6 == 00)
+                    {
+                        //a.field3++;
+                        //a.field4 = 1;
+                        //finData.Add(a);
+                        i++;
+                    }
+                    else
+                    {
+                        finData.Add(a);
+                    }
+                }
 
                 #region Print
-                //Console.Write(csvData[i][0]);
-                //Console.Write(csvData[i][1]);
-                //Console.Write(csvData[i][2]);
-                //Console.Write(csvData[i][3]);
-                //Console.Write(csvData[i][4]);
-                //Console.Write(csvData[i][5]);
-                //Console.Write(csvData[i][6]);
-                //Console.Write(csvData[i][7]);
-                //Console.Write(csvData[i][8]);
-                //Console.Write(csvData[i][9]);
+                //Console.WriteLine("Finished the loop");
+                //Console.WriteLine("The 100th entry:");
+                //Console.WriteLine();
+                //for (int i = 0; i < 10; i++)
+                //{
+
+                //    if(i == 9)
+                //    {
+                //        Console.Write(header[i]);
+                //    }
+                //    else
+                //    {
+                //        Console.Write(header[i] + ", ");
+                //    }
+                //}
+                //Console.WriteLine();
+                //for (int i = 0; i < 10; i++)
+                //{
+                //    Console.Write(csvData[100][i]);
+                //}
                 #endregion
 
-                //Make sure the headers aren't read into the fields moving from 1 csv file to the next
-                if (formatData(csvData[i][0]) == "ALPHA_CODE") 
-                {
-                    i++;
-                }
+                //ToDo questions...
 
-                //csvData[col][row]
-                //temp is used to check values in error testing
-                //string temp = "";
-                //temp = formatData(csvData[i][*]);
-                a.field1 = csvData[i][0];
-                a.field2 = csvData[i][1];
-                a.field3 = Convert.ToUInt16(formatData(csvData[i][2]));
-                a.field4 = Convert.ToUInt16(formatData(csvData[i][3]));
-                a.field5 = Convert.ToUInt16(formatData(csvData[i][4]));
-                a.field6 = Convert.ToUInt32(formatData(csvData[i][5]));
-                a.field7 = Convert.ToUInt64(formatData(csvData[i][6]));
-                a.field8 = Convert.ToDouble(formatData(csvData[i][7]));
-                a.field9 = Convert.ToDouble(formatData(csvData[i][8]));
-                a.field10 = Convert.ToChar(formatData(csvData[i][9]));
-
-                // There are not 53 weeks in a year, if so add 1 to year and set the week to 1 (the first week of a new year)
-                if (a.field4 == 53 || a.field6 == 00)
-                {
-                    //a.field3++;
-                    //a.field4 = 1;
-                    //finData.Add(a);
-                    i++;
-                }
-                else
-                {
-                    finData.Add(a);
-                }
+                // make the console read a character followed by ENTER from the keyboard
+                // this so that it does not close abruptly before we see the output
+                
+                
             }
-
-            #region Print
-            //Console.WriteLine("Finished the loop");
-            //Console.WriteLine("The 100th entry:");
-            //Console.WriteLine();
-            //for (int i = 0; i < 10; i++)
-            //{
-
-            //    if(i == 9)
-            //    {
-            //        Console.Write(header[i]);
-            //    }
-            //    else
-            //    {
-            //        Console.Write(header[i] + ", ");
-            //    }
-            //}
-            //Console.WriteLine();
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    Console.Write(csvData[100][i]);
-            //}
-            #endregion
-
-            //ToDo questions...
-
-            // make the console read a character followed by ENTER from the keyboard
-            // this so that it does not close abruptly before we see the output
             writeData(fileBasePath + "filedata.csv", header, finData);
             Console.WriteLine("Finished.");
             Console.Read();
