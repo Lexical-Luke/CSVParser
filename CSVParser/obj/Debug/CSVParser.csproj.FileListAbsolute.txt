@@ -20,3 +20,10 @@ C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\obj\Debug\CSVParser.csp
 C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\obj\Debug\CSVParser.csproj.CoreCompileInputs.cache
 C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\obj\Debug\CSVParser.exe
 C:\Users\LiamSearle\Documents\GitHub\CSVParser\CSVParser\obj\Debug\CSVParser.pdb
+\\Mac\Home\Documents\University\Comp Sci\2nd Year\202\Pracs\DB\Prac 1\CSVParser\CSVParser\bin\Debug\CSVParser.exe.config
+\\Mac\Home\Documents\University\Comp Sci\2nd Year\202\Pracs\DB\Prac 1\CSVParser\CSVParser\bin\Debug\CSVParser.exe
+\\Mac\Home\Documents\University\Comp Sci\2nd Year\202\Pracs\DB\Prac 1\CSVParser\CSVParser\bin\Debug\CSVParser.pdb
+\\Mac\Home\Documents\University\Comp Sci\2nd Year\202\Pracs\DB\Prac 1\CSVParser\CSVParser\obj\Debug\CSVParser.csprojAssemblyReference.cache
+\\Mac\Home\Documents\University\Comp Sci\2nd Year\202\Pracs\DB\Prac 1\CSVParser\CSVParser\obj\Debug\CSVParser.csproj.CoreCompileInputs.cache
+\\Mac\Home\Documents\University\Comp Sci\2nd Year\202\Pracs\DB\Prac 1\CSVParser\CSVParser\obj\Debug\CSVParser.exe
+\\Mac\Home\Documents\University\Comp Sci\2nd Year\202\Pracs\DB\Prac 1\CSVParser\CSVParser\obj\Debug\CSVParser.pdb
