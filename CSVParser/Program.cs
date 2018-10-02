@@ -65,6 +65,30 @@ namespace CSVParser
             return 0;
         }
 
+        public static string top5shares(string code, int year, List<financial> finData, string path)
+        {
+            StreamReader sr = new StreamReader(path + "filedata.csv");
+            string[] dataElements = new string[10];
+            List<string[]> div = new List<string[]>{ };
+            while (!sr.EndOfStream)
+            {
+                dataElements = sr.ReadLine().Split(',');
+                
+                if(dataElements[3] == "2014")
+                {
+                    div.Add(dataElements);
+                    var ascendingOrder = div.OrderBy(i => i);
+                }
+            }
+            string temp;
+            for(int i = 0; i < 5; i++)
+            {
+
+            }
+
+            return "";
+        }
+
         #region the struct that stores the column data for the file
         public class financial
         {
