@@ -65,28 +65,53 @@ namespace CSVParser
             return 0;
         }
 
-        public static string top5shares(string code, int year, List<financial> finData, string path)
+        public static void top5shares(int year, List<financial> finData, string path)
         {
             StreamReader sr = new StreamReader(path + "filedata.csv");
             string[] dataElements = new string[10];
-            List<string[]> div = new List<string[]>{ };
+            List<string[]> div = new List<string[]>();
             while (!sr.EndOfStream)
             {
                 dataElements = sr.ReadLine().Split(',');
                 
-                if(dataElements[3] == "2014")
+                if(dataElements[2] == "2014")
                 {
                     div.Add(dataElements);
-                    var ascendingOrder = div.OrderBy(i => i);
+            //        var ascendingOrder = div.OrderBy(i => i);
                 }
             }
-            string temp;
-            for(int i = 0; i < 5; i++)
+            /*string tDiv = "";
+            string tName = "";
+            int amount = div.Count();
+            int largestIndex = 0;
+            string x = "";
+            
+            tDiv = div[0][7];//set initial values
+            tName = div[0][0];
+
+            
+            
+            for (int i = 0; i < 5; i++)
             {
+                largestIndex = 0;
+                for (int j = 0; j < amount; j++)
+                {
+                    if (Convert.ToInt32(tDiv) < Convert.ToInt32(div[j][7]))//if a larger divyeild is found then update.
+                    {
+                        tDiv = div[j][7];
+                        tName = div[j][0];
+                        largestIndex = j;
+                    }
+                }
+                
 
+                div.RemoveAt(largestIndex);//remove the biggest value
+                
+                
+                amount--;//update the size of the List
             }
-
-            return "";
+            Console.WriteLine("Number " + (i + 1) + " Stock is " + div[largestIndex][0] + " at a value of " + div[largestIndex][7]);*/
+            //return "";
         }
 
         #region the struct that stores the column data for the file
@@ -464,6 +489,7 @@ namespace CSVParser
             Console.WriteLine("Finished.");
             Console.WriteLine("YRK Stock Close: " + stockClose("YRK", 2014, finData, fileBasePath));
             Console.WriteLine("YRK Total Share Sales for final week: " + totalShareSales("YRK", 2014, finData, fileBasePath));
+            top5shares(2012, finData, fileBasePath);
             Console.Read();
         }
         #endregion
