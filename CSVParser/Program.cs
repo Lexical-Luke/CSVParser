@@ -281,7 +281,7 @@ namespace CSVParser
 
             if (field.Equals("-"))//deals with erronous data/null values for numbers
             {
-                field = "00";
+                field = ""+01;
             }
 
             return field;
@@ -343,7 +343,7 @@ namespace CSVParser
                     a.field10 = Convert.ToChar(formatData(csvData[i][9]));
 
                     // There are not 53 weeks in a year, if so add 1 to year and set the week to 1 (the first week of a new year)
-                    if (a.field4 == 53 || a.field6 == 00)
+                    if (a.field4 == 53 || a.field6 == 01)
                     {
                         //a.field3++;
                         //a.field4 = 1;
