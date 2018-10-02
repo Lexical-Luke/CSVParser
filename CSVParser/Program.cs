@@ -15,6 +15,56 @@ namespace CSVParser
         // const keyword means it cannot be changed once initialised
         const string fileBasePath = @"..\..\..\CSVFiles\";
 
+        public static int stockClose(string code, int year, List<financial> finData, string path)
+        {
+            StreamReader sr = new StreamReader(path + "filedata.csv");
+            string[] forerunner = { };
+            string[] dataElements = new string[10];
+            while (!sr.EndOfStream)
+            {
+                forerunner = sr.ReadLine().Split(',');
+                
+                
+                string yr = "" + year;
+
+                if (dataElements[0]==code && dataElements[2]==yr)
+                {
+                    if (Convert.ToInt32(forerunner[3]) < Convert.ToInt32(dataElements[3]))
+                    {
+                        return Convert.ToInt32(dataElements[4]);//return the closing stock
+                    }
+                    
+                }
+                dataElements = forerunner;
+            }
+            return 0;
+        }
+
+        public static int totalShareSales(string code, int year, List<financial> finData, string path)
+        {
+            StreamReader sr = new StreamReader(path + "filedata.csv");
+            string[] forerunner = { };
+            string[] dataElements = new string[10];
+            while (!sr.EndOfStream)
+            {
+                forerunner = sr.ReadLine().Split(',');
+
+
+                string yr = "" + year;
+
+                if (dataElements[0] == code && dataElements[2] == yr)
+                {
+                    if (Convert.ToInt32(forerunner[3]) < Convert.ToInt32(dataElements[3]))
+                    {
+                        return Convert.ToInt32(dataElements[5]);//return the closing stock
+                    }
+
+                }
+                dataElements = forerunner;
+            }
+            return 0;
+        }
+
         #region the struct that stores the column data for the file
         public class financial
         {
@@ -388,6 +438,8 @@ namespace CSVParser
             }
             writeData(fileBasePath + "filedata.csv", header, finData);
             Console.WriteLine("Finished.");
+            Console.WriteLine("YRK Stock Close: " + stockClose("YRK", 2014, finData, fileBasePath));
+            Console.WriteLine("YRK Total Share Sales for final week: " + totalShareSales("YRK", 2014, finData, fileBasePath));
             Console.Read();
         }
         #endregion
