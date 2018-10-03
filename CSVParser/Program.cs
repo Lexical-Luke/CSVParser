@@ -126,6 +126,60 @@ namespace CSVParser
 
         }
 
+        public static string marketCap(int year, List<financial> finData, string path)
+        {
+            StreamReader sr = new StreamReader(path + "filedata.csv");
+
+            List<string[]> data = new List<string[]>();
+            string[] dataElements = new string[10];
+            string[] forerunner = new string[10];
+            
+            
+            int pos = 0;//keeps track of the current value we want to be incrementing
+            while (!sr.EndOfStream)
+            {
+                forerunner = sr.ReadLine().Split(',');
+                string yr = "" + year;
+                string[] temp = new string[2];
+                Int64 temp1 = 0;
+                if (yr == dataElements[2])//if the correct year 
+                {
+                    temp[0] = forerunner[0];
+                    temp[1] = forerunner[6];
+                    data.Add(temp);
+                    if (forerunner[0] != dataElements[0])//if all the market caps have been added for a certain stock, move on to the next place in the List.
+                    {
+                        pos++;
+                        temp[0] = forerunner[0];
+                        temp[1] = forerunner[6];
+                        data.Add(temp);
+                    }
+                    else
+                    {
+                        temp1 = Convert.ToInt64(data[pos][1]);
+                        temp1 += Convert.ToInt64(dataElements[6]);
+                        data[pos][1] = "" + temp1;//increment the market cap total associated with the current stock
+                    }
+                    
+                }
+                
+
+                dataElements = forerunner;
+            }
+            string biggestcapname = data[0][0];//initialise the values
+            string biggestcapval = data[0][1];
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                if (Convert.ToInt64(data[i][1])>Convert.ToInt64(biggestcapval))//if a bigger value is found then replace it with the bigger value
+                {
+                    biggestcapval = data[i][1];
+                    biggestcapname = data[i][0];
+                }
+            }
+            return "The stock with the highest revenue based on market cap is " + biggestcapname + " with a total market cap of: " + biggestcapval + ".";
+        }
+
         #region the struct that stores the column data for the file
         public class financial
         {
@@ -502,6 +556,7 @@ namespace CSVParser
             Console.WriteLine("YRK Stock Close: " + stockClose("YRK", 2014, finData, fileBasePath));
             Console.WriteLine("YRK Total Share Sales for final week: " + totalShareSales("YRK", 2014, finData, fileBasePath));
             top5shares(2012, finData, fileBasePath);
+            Console.WriteLine(marketCap(2013, finData, fileBasePath));
             Console.Read();
         }
         #endregion
