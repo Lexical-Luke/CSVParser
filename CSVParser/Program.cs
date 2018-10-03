@@ -77,41 +77,53 @@ namespace CSVParser
                 if(dataElements[2] == "2014")
                 {
                     div.Add(dataElements);
-            //        var ascendingOrder = div.OrderBy(i => i);
                 }
             }
-            /*string tDiv = "";
-            string tName = "";
-            int amount = div.Count();
-            int largestIndex = 0;
-            string x = "";
-            
-            tDiv = div[0][7];//set initial values
-            tName = div[0][0];
 
-            
-            
-            for (int i = 0; i < 5; i++)
+            List<double> orderedDiv = new List<double>();//set initial values
+            List<string> stockName = new List<string>();//set initial values
+            //tName = div[0][0];
+
+            for (int i = 0; i < div.Count; i++)
+            {   
+                orderedDiv.Add(Convert.ToInt32(div[i][7]));              
+            }
+
+            //var descendingOrder = tDiv.OrderByDescending(i => i); //order by decending i.e. biggest numbbers first
+            //tDiv.Sort();
+            //tDiv.Reverse();
+            orderedDiv = orderedDiv.OrderByDescending(i => i).ToList();     //Order with biggest numbers at begining
+            orderedDiv = orderedDiv.Distinct().ToList();    //remove duplicates
+
+            for (int i = 0; i < orderedDiv.Count; i++)    //loop for the ammount of ordered div
             {
-                largestIndex = 0;
-                for (int j = 0; j < amount; j++)
+                for (int j = 0; j < div.Count; j++)     //loop for the ammounts of total entries for div 
                 {
-                    if (Convert.ToInt32(tDiv) < Convert.ToInt32(div[j][7]))//if a larger divyeild is found then update.
+                    //if ordered div == div from complete entry
+                    if (orderedDiv[i] == Convert.ToDouble(div[j][7])) 
                     {
-                        tDiv = div[j][7];
-                        tName = div[j][0];
-                        largestIndex = j;
+                        stockName.Add(div[j][0]);       //take the name the div belongs too and add to list 0-1-2
+                    }
+                }  
+            }
+            
+            for (int i = 0; i < orderedDiv.Count; i++) 
+            {
+                for (int j = 0; j < orderedDiv.Count; j++)
+                {
+                    if (stockName[i] == stockName[j+1])
+                    {
+                        stockName.RemoveAt(j+1);
+                        orderedDiv.RemoveAt(j+1);
                     }
                 }
-                
-
-                div.RemoveAt(largestIndex);//remove the biggest value
-                
-                
-                amount--;//update the size of the List
             }
-            Console.WriteLine("Number " + (i + 1) + " Stock is " + div[largestIndex][0] + " at a value of " + div[largestIndex][7]);*/
-            //return "";
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("Number " + (i + 1) + " Stock is " + stockName[i] + " at a value of " + orderedDiv[i]);
+            }
+
         }
 
         #region the struct that stores the column data for the file
